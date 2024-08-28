@@ -34,7 +34,7 @@ header {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Space between logo and navlist */
     background: #ffffff; /* White background for the header */
     padding: 22px 15%;
     border-bottom: 1px solid #dee2e6; /* Light border for the header */
@@ -48,20 +48,20 @@ header {
     letter-spacing: 1px;
 }
 
-span {
-    color: var(--main-color);
-}
-
 .navlist {
     display: flex;
+    justify-content: center; /* Center navigation items */
+    flex: 1; /* Allow navlist to grow and shrink as needed */
 }
 
 .navlist a {
     color: var(--second-color);
-    font-size: 17px;
-    font-weight: 500;
+    font-size: 20px; /* Increased font size */
+    font-weight: 600; /* Increased font weight */
     margin: 0 25px;
+    text-decoration: none; /* Remove default underline */
     transition: all .45s ease;
+    position: relative; /* For pseudo-elements */
 }
 
 .navlist a:hover {
@@ -70,6 +70,24 @@ span {
 
 .navlist a.active {
     color: var(--main-color);
+     /* Underline for active link */
+}
+
+.navlist a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Position the decoration below the text */
+    width: 100%;
+    height: 2px; /* Thickness of the underline */
+    background: var(--main-color); /* Color of the underline */
+    transform: scaleX(0);
+    transition: transform .45s ease;
+}
+
+.navlist a:hover::before,
+.navlist a.active::before {
+    transform: scaleX(1);
 }
 
 #menu-icon {
@@ -513,7 +531,7 @@ form textarea {
         display: flex;
         flex-direction: column;
         background: #ffffff; /* White background for mobile menu */
-        text-align: left;
+        text-align: center; /* Center text in mobile menu */
         transition: all .45s ease;
     }
 
@@ -537,3 +555,4 @@ form textarea {
         top: 100%;
     }
 }
+
